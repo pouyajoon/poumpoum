@@ -1,0 +1,16 @@
+{
+  "name": "poumpoum",
+  "version": "0.0.1",
+  "description": "poum",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "author": "",
+  "dependencies": {},
+  "scripts": {
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "tslint-react": "3.6.0",
+    "typescript": "3.0.1"
+  }
+}
