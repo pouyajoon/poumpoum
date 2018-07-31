@@ -1,40 +1,21 @@
-
-
-interface Instruction {
-    name: string;
-    action: () => string;
-}
-
-const help = {
-    name: 'help',
-    action: () => {
-        const parser = new SmsParser();
-        return parser.instructionList();
-    }
-};
-const stopBox = {
-    name: 'stop box',
-    action: () => { console.log('stop box'); return 'stop box'; }
-};
-const startBox = {
-    name: 'start box',
-    action: () => { console.log('start box'); return 'start box'; }
-};
-const instructions: Instruction[] = [help, startBox, stopBox];
-
+import { instructions, Instruction, help } from "./instructions";
 
 export class SmsParser {
-    instructionList() {
+    instructionList = (): string => {
         return instructions.map((ins, i) => `${i}. ${ins.name}`).join(', ');
     }
-    parse = (message: string): Instruction => {
-        const words = message.split(' ');
-        if (words.length === 1) {
-            const number = parseInt(words[0], 10);
-            if (!isNaN(number)) {
-                const instruction = instructions[number];
-                if (instruction) {
-                    return instruction;
+    parse = (message?: string): Instruction => {
+        if (message) {
+            message = message.toLowerCase();
+            const words = message.split(' ');
+            if (words.length === 1) {
+                const number = parseInt(words[0], 10);
+                if (!isNaN(number)) {
+                    const instruction = instructions[number];
+                    console.log('instruction found', instruction.name);
+                    if (instruction) {
+                        return instruction;
+                    }
                 }
             }
         }
