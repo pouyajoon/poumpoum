@@ -1,5 +1,5 @@
 import { SmsParser } from "./SmsParser";
-import * as publicIp from 'public-ip';
+import { getPublicIp } from "./publicIp";
 
 export interface Instruction {
     name: string;
@@ -25,12 +25,7 @@ const startBox = {
 const publicIpInstruction = {
     name: 'public ip',
     action: async () => {
-        return new Promise<string>(resolve => {
-            publicIp.v4().then((ip: string) => {
-                console.log('public ip is', ip)
-                return resolve(ip);
-            });
-        })
+        return getPublicIp();
     }
 }
 export const instructions: Instruction[] = [help, publicIpInstruction, startBox, stopBox];

@@ -1,19 +1,22 @@
 
 import { setup } from './server';
-import { getWeather } from './weather';
+import { updatePublicIpOnDomain } from './mydns';
+// import { getWeather } from './weather';
 
 setup();
 
 // sendSms('coucou');
 
-const poumerole = {
-    lat: 45.9602886,
-    lon: 2.6813398
-}
+// const poumerole = {
+//     lat: 45.9602886,
+//     lon: 2.6813398
+// }
 
-const start = async () => {
-    const a = await getWeather(poumerole);
-    console.log(a);
-}
+// const start = async () => {
+//     const a = await getWeather(poumerole);
+//     console.log(a);
+// }
 
-start();
+// start();
+
+updatePublicIpOnDomain();

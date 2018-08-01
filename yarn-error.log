@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add -D @types/r2
+  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add -D @types/node-cloudflare
 
 PATH: 
   /Users/pouya/.fastlane/bin:/Users/pouya/.rbenv/shims:/Users/pouya/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/pouya/.composer/vendor/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fr2: Not found
+  Error: https://registry.yarnpkg.com/@types%2fnode-cloudflare: Not found
       at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:65656:18)
       at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:134675:22)
       at Request.emit (events.js:182:13)
@@ -37,15 +37,19 @@ npm manifest:
     "dependencies": {
       "@types/public-ip": "2.3.0",
       "@types/request": "2.47.1",
+      "cloudflare": "2.4.1",
+      "dotenv": "6.0.0",
+      "node-fetch": "2.2.0",
       "public-ip": "2.4.0",
-      "r2": "2.0.1",
       "wget": "0.0.1"
     },
     "scripts": {
-      "dev": "tsc --watch"
+      "tsc": "./node_modules/.bin/tsc --watch",
+      "dev": "sudo nodemon dist/index.js"
     },
     "devDependencies": {
       "@types/express": "4.16.0",
+      "@types/node-fetch": "2.1.2",
       "express": "4.16.3",
       "tslint-react": "3.6.0",
       "typescript": "3.0.1"
@@ -111,6 +115,12 @@ Lockfile:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
   
+  "@types/node-fetch@2.1.2":
+    version "2.1.2"
+    resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.1.2.tgz#8c5da14d70321e4c4ecd5db668e3f93cf6c7399f"
+    dependencies:
+      "@types/node" "*"
+  
   "@types/node@*":
     version "10.5.4"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
@@ -150,9 +160,19 @@ Lockfile:
       mime-types "~2.1.18"
       negotiator "0.6.1"
   
+  agent-base@^4.1.0:
+    version "4.2.1"
+    resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.2.1.tgz#d89e5999f797875674c07d87f260fc41e83e8ca9"
+    dependencies:
+      es6-promisify "^5.0.0"
+  
   array-flatten@1.1.1:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
+  
+  autocreate@^1.1.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/autocreate/-/autocreate-1.2.0.tgz#522167992c4172c15479e5f88f3486a452a40cba"
   
   body-parser@1.18.2:
     version "1.18.2"
@@ -185,15 +205,27 @@ Lockfile:
       normalize-url "2.0.1"
       responselike "1.0.2"
   
-  caseless@^0.12.0:
-    version "0.12.0"
-    resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
+  capture-stack-trace@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
   
   clone-response@1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/clone-response/-/clone-response-1.0.2.tgz#d1dc973920314df67fbeb94223b4ee350239e96b"
     dependencies:
       mimic-response "^1.0.0"
+  
+  cloudflare@2.4.1:
+    version "2.4.1"
+    resolved "https://registry.yarnpkg.com/cloudflare/-/cloudflare-2.4.1.tgz#11f5ba2a62bf5afef093a7517ce8f35716cfd81b"
+    dependencies:
+      autocreate "^1.1.0"
+      es-class "^2.1.1"
+      got "^6.3.0"
+      https-proxy-agent "^2.1.1"
+      object-assign "^4.1.0"
+      should-proxy "^1.0.4"
+      url-pattern "^1.0.3"
   
   content-disposition@0.5.2:
     version "0.5.2"
@@ -215,9 +247,21 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   
+  create-error-class@^3.0.0:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
+    dependencies:
+      capture-stack-trace "^1.0.0"
+  
   debug@2.6.9:
     version "2.6.9"
     resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
+    dependencies:
+      ms "2.0.0"
+  
+  debug@^3.1.0:
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
     dependencies:
       ms "2.0.0"
   
@@ -256,6 +300,10 @@ Lockfile:
     dependencies:
       dns-packet "^1.1.0"
   
+  dotenv@6.0.0:
+    version "6.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+  
   duplexer3@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -267,6 +315,20 @@ Lockfile:
   encodeurl@~1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
+  
+  es-class@^2.1.1:
+    version "2.1.1"
+    resolved "https://registry.yarnpkg.com/es-class/-/es-class-2.1.1.tgz#6ec2243b5a1e3581c0b7eecee0130c9c0d6fb2b7"
+  
+  es6-promise@^4.0.3:
+    version "4.2.4"
+    resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.2.4.tgz#dc4221c2b16518760bd8c39a52d8f356fc00ed29"
+  
+  es6-promisify@^5.0.0:
+    version "5.0.0"
+    resolved "https://registry.yarnpkg.com/es6-promisify/-/es6-promisify-5.0.0.tgz#5109d62f3e56ea967c4b63505aef08291c8a5203"
+    dependencies:
+      es6-promise "^4.0.3"
   
   escape-html@~1.0.3:
     version "1.0.3"
@@ -342,6 +404,22 @@ Lockfile:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   
+  got@^6.3.0:
+    version "6.7.1"
+    resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
+    dependencies:
+      create-error-class "^3.0.0"
+      duplexer3 "^0.1.4"
+      get-stream "^3.0.0"
+      is-redirect "^1.0.0"
+      is-retry-allowed "^1.0.0"
+      is-stream "^1.0.0"
+      lowercase-keys "^1.0.0"
+      safe-buffer "^5.0.1"
+      timed-out "^4.0.0"
+      unzip-response "^2.0.1"
+      url-parse-lax "^1.0.0"
+  
   got@^8.0.0:
     version "8.3.2"
     resolved "https://registry.yarnpkg.com/got/-/got-8.3.2.tgz#1d23f64390e97f776cac52e5b936e5f514d2e937"
@@ -396,6 +474,13 @@ Lockfile:
       setprototypeof "1.1.0"
       statuses ">= 1.4.0 < 2"
   
+  https-proxy-agent@^2.1.1:
+    version "2.2.1"
+    resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.1.tgz#51552970fa04d723e04c56d04178c3f92592bbc0"
+    dependencies:
+      agent-base "^4.1.0"
+      debug "^3.1.0"
+  
   iconv-lite@0.4.19:
     version "0.4.19"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -437,13 +522,17 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
   
-  is-retry-allowed@^1.1.0:
+  is-redirect@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/is-redirect/-/is-redirect-1.0.0.tgz#1d03dded53bd8db0f30c26e4f95d36fc7c87dc24"
+  
+  is-retry-allowed@^1.0.0, is-retry-allowed@^1.1.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-retry-allowed/-/is-retry-allowed-1.1.0.tgz#11a060568b67339444033d0125a61a20d564fb34"
   
-  is-typedarray@^1.0.0:
-    version "1.0.0"
-    resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
+  is-stream@^1.0.0:
+    version "1.1.0"
+    resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
   
   isarray@~1.0.0:
     version "1.0.0"
@@ -512,7 +601,7 @@ Lockfile:
     version "0.6.1"
     resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
   
-  node-fetch@^2.0.0-alpha.8:
+  node-fetch@2.2.0:
     version "2.2.0"
     resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
   
@@ -564,6 +653,10 @@ Lockfile:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
   
+  prepend-http@^1.0.1:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
+  
   prepend-http@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
@@ -599,14 +692,6 @@ Lockfile:
       decode-uri-component "^0.2.0"
       object-assign "^4.1.0"
       strict-uri-encode "^1.0.0"
-  
-  r2@2.0.1:
-    version "2.0.1"
-    resolved "https://registry.yarnpkg.com/r2/-/r2-2.0.1.tgz#94cd802ecfce9a622549c8182032d8e4a2b2e612"
-    dependencies:
-      caseless "^0.12.0"
-      node-fetch "^2.0.0-alpha.8"
-      typedarray-to-buffer "^3.1.2"
   
   range-parser@~1.2.0:
     version "1.2.0"
@@ -682,6 +767,10 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
   
+  should-proxy@^1.0.4:
+    version "1.0.4"
+    resolved "https://registry.yarnpkg.com/should-proxy/-/should-proxy-1.0.4.tgz#c805a501abf69539600634809e62fbf238ba35e4"
+  
   sort-keys@^2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/sort-keys/-/sort-keys-2.0.0.tgz#658535584861ec97d730d6cf41822e1f56684128"
@@ -706,7 +795,7 @@ Lockfile:
     dependencies:
       safe-buffer "~5.1.0"
   
-  timed-out@^4.0.1:
+  timed-out@^4.0.0, timed-out@^4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
   
@@ -737,12 +826,6 @@ Lockfile:
       media-typer "0.3.0"
       mime-types "~2.1.18"
   
-  typedarray-to-buffer@^3.1.2:
-    version "3.1.5"
-    resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
-    dependencies:
-      is-typedarray "^1.0.0"
-  
   typescript@3.0.1:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
@@ -751,11 +834,25 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   
+  unzip-response@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
+  
+  url-parse-lax@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/url-parse-lax/-/url-parse-lax-1.0.0.tgz#7af8f303645e9bd79a272e7a14ac68bc0609da73"
+    dependencies:
+      prepend-http "^1.0.1"
+  
   url-parse-lax@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/url-parse-lax/-/url-parse-lax-3.0.0.tgz#16b5cafc07dbe3676c1b1999177823d6503acb0c"
     dependencies:
       prepend-http "^2.0.0"
+  
+  url-pattern@^1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/url-pattern/-/url-pattern-1.0.3.tgz#0409292471b24f23c50d65a47931793d2b5acfc1"
   
   url-to-options@^1.0.1:
     version "1.0.1"
