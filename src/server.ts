@@ -4,6 +4,7 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import configuration from './configuration';
+import { ServerHost } from './configuration';
 
 const smsParser = new SmsParser();
 
@@ -33,9 +34,13 @@ export const setup = () => {
     });
 }
 
+export function getUrlFromServerHost(serverHost: ServerHost) {
+    return `${serverHost.protocol}://${serverHost.host}:${serverHost.port}`;
+}
+
 export const sendSms = (from: string, msg: string) => {
     const phone = from.replace('+336', '06');
-    const uri = `http://${configuration.smsServer.host}:${configuration.smsServer.port}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${msg}`;
+    const uri = `${getUrlFromServerHost(configuration.smsServer)}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${msg}`;
     console.log('send sms', uri);
     http.get(uri, (res: any) => {
         // console.log('res body', res.body);
