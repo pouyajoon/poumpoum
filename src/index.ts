@@ -11,6 +11,4 @@ const poumerole = {
     lon: 2.6813398
 }
 
-
-
 getWeather(poumerole);
