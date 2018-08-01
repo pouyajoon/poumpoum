@@ -2,6 +2,7 @@ import * as express from 'express';
 import { SmsParser } from './SmsParser';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
+import fetch from 'node-fetch';
 
 const smsParser = new SmsParser();
 
@@ -38,4 +39,10 @@ export const sendSms = (from: string, msg: string) => {
     http.get(uri, (res: any) => {
         // console.log('res body', res.body);
     })
+}
+
+export async function getJson<T>(uri: string): Promise<T> {
+    const response = await fetch(uri);
+    const json: T = await response.json();
+    return json;
 }

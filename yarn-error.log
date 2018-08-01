@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add @types/public-ip
+  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add -D @types/r2
 
 PATH: 
   /Users/pouya/.fastlane/bin:/Users/pouya/.rbenv/shims:/Users/pouya/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/pouya/.composer/vendor/bin
@@ -14,8 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: read ECONNRESET
-      at TLSWrap.onread (net.js:659:25)
+  Error: https://registry.yarnpkg.com/@types%2fr2: Not found
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:65656:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:134675:22)
+      at Request.emit (events.js:182:13)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:135658:10)
+      at Request.emit (events.js:182:13)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:135578:12)
+      at Object.onceWrapper (events.js:273:13)
+      at IncomingMessage.emit (events.js:187:15)
+      at endReadableNT (_stream_readable.js:1081:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -26,7 +35,11 @@ npm manifest:
     "license": "MIT",
     "author": "",
     "dependencies": {
-      "public-ip": "2.4.0"
+      "@types/public-ip": "2.3.0",
+      "@types/request": "2.47.1",
+      "public-ip": "2.4.0",
+      "r2": "2.0.1",
+      "wget": "0.0.1"
     },
     "scripts": {
       "dev": "tsc --watch"
@@ -58,6 +71,10 @@ Lockfile:
       "@types/connect" "*"
       "@types/node" "*"
   
+  "@types/caseless@*":
+    version "0.12.1"
+    resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
+  
   "@types/connect@*":
     version "3.4.32"
     resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.32.tgz#aa0e9616b9435ccad02bc52b5b454ffc2c70ba28"
@@ -84,6 +101,12 @@ Lockfile:
       "@types/express-serve-static-core" "*"
       "@types/serve-static" "*"
   
+  "@types/form-data@*":
+    version "2.2.1"
+    resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-2.2.1.tgz#ee2b3b8eaa11c0938289953606b745b738c54b1e"
+    dependencies:
+      "@types/node" "*"
+  
   "@types/mime@*":
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
@@ -92,9 +115,22 @@ Lockfile:
     version "10.5.4"
     resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.4.tgz#6eccc158504357d1da91434d75e86acde94bb10b"
   
+  "@types/public-ip@2.3.0":
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/@types/public-ip/-/public-ip-2.3.0.tgz#8ef497b09e52455ab24f753b17e6703bb6baaebf"
+  
   "@types/range-parser@*":
     version "1.2.2"
     resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
+  
+  "@types/request@2.47.1":
+    version "2.47.1"
+    resolved "https://registry.yarnpkg.com/@types/request/-/request-2.47.1.tgz#25410d3afbdac04c91a94ad9efc9824100735824"
+    dependencies:
+      "@types/caseless" "*"
+      "@types/form-data" "*"
+      "@types/node" "*"
+      "@types/tough-cookie" "*"
   
   "@types/serve-static@*":
     version "1.13.2"
@@ -102,6 +138,10 @@ Lockfile:
     dependencies:
       "@types/express-serve-static-core" "*"
       "@types/mime" "*"
+  
+  "@types/tough-cookie@*":
+    version "2.3.3"
+    resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.3.tgz#7f226d67d654ec9070e755f46daebf014628e9d9"
   
   accepts@~1.3.5:
     version "1.3.5"
@@ -144,6 +184,10 @@ Lockfile:
       lowercase-keys "1.0.0"
       normalize-url "2.0.1"
       responselike "1.0.2"
+  
+  caseless@^0.12.0:
+    version "0.12.0"
+    resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   
   clone-response@1.0.2:
     version "1.0.2"
@@ -397,6 +441,10 @@ Lockfile:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/is-retry-allowed/-/is-retry-allowed-1.1.0.tgz#11a060568b67339444033d0125a61a20d564fb34"
   
+  is-typedarray@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
+  
   isarray@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
@@ -463,6 +511,10 @@ Lockfile:
   negotiator@0.6.1:
     version "0.6.1"
     resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+  
+  node-fetch@^2.0.0-alpha.8:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
   
   normalize-url@2.0.1:
     version "2.0.1"
@@ -547,6 +599,14 @@ Lockfile:
       decode-uri-component "^0.2.0"
       object-assign "^4.1.0"
       strict-uri-encode "^1.0.0"
+  
+  r2@2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/r2/-/r2-2.0.1.tgz#94cd802ecfce9a622549c8182032d8e4a2b2e612"
+    dependencies:
+      caseless "^0.12.0"
+      node-fetch "^2.0.0-alpha.8"
+      typedarray-to-buffer "^3.1.2"
   
   range-parser@~1.2.0:
     version "1.2.0"
@@ -666,12 +726,22 @@ Lockfile:
     dependencies:
       tslib "^1.8.1"
   
+  tunnel@0.0.2:
+    version "0.0.2"
+    resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.2.tgz#f23bcd8b7a7b8a864261b2084f66f93193396334"
+  
   type-is@~1.6.15, type-is@~1.6.16:
     version "1.6.16"
     resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.16.tgz#f89ce341541c672b25ee7ae3c73dee3b2be50194"
     dependencies:
       media-typer "0.3.0"
       mime-types "~2.1.18"
+  
+  typedarray-to-buffer@^3.1.2:
+    version "3.1.5"
+    resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"
+    dependencies:
+      is-typedarray "^1.0.0"
   
   typescript@3.0.1:
     version "3.0.1"
@@ -702,3 +772,9 @@ Lockfile:
   vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
+  
+  wget@0.0.1:
+    version "0.0.1"
+    resolved "https://registry.yarnpkg.com/wget/-/wget-0.0.1.tgz#8bb81af0b8e60b5df262d3c81e5737e1f4931e53"
+    dependencies:
+      tunnel "0.0.2"

@@ -8,14 +8,17 @@
   "dependencies": {
     "@types/public-ip": "2.3.0",
     "@types/request": "2.47.1",
+    "node-fetch": "2.2.0",
     "public-ip": "2.4.0",
     "wget": "0.0.1"
   },
   "scripts": {
-    "dev": "tsc --watch"
+    "tsc": "tsc --watch",
+    "dev": "sudo nodemon dist/index.js"
   },
   "devDependencies": {
     "@types/express": "4.16.0",
+    "@types/node-fetch": "2.1.2",
     "express": "4.16.3",
     "tslint-react": "3.6.0",
     "typescript": "3.0.1"
