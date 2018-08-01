@@ -10,17 +10,16 @@ export const help = {
     name: 'help',
     action: async () => {
         const parser = new SmsParser();
-        const res = parser.instructionList();
-        return new Promise<string>(resolve => resolve(res));
+        return parser.instructionList();
     }
 };
 const stopBox = {
     name: 'stop box',
-    action: async () => { console.log('stop box'); return new Promise<string>(r => r('stop box')); }
+    action: async () => { console.log('stop box'); return 'stop box'; }
 };
 const startBox = {
     name: 'start box',
-    action: async () => { console.log('start box'); return new Promise<string>(r => r('start box')); }
+    action: async () => { console.log('start box'); return 'start box'; }
 };
 
 const publicIpInstruction = {

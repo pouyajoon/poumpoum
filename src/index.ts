@@ -11,4 +11,9 @@ const poumerole = {
     lon: 2.6813398
 }
 
-getWeather(poumerole);
+const start = async () => {
+    const a = await getWeather(poumerole);
+    console.log(a);
+}
+
+start();

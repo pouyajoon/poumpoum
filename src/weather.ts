@@ -1,12 +1,12 @@
 import { getJson } from "./server";
+import configuration from "./configuration";
 
 interface Coords {
     lat: number;
     lon: number;
 }
 
-const apiKey = 'e6a38c6e46ab47097b9af70315310cb1';
-
+const apiKey = configuration.weather;
 
 interface WeatherType {
     description: 'clear sky' | 'thunderstorm'

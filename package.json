@@ -8,12 +8,13 @@
   "dependencies": {
     "@types/public-ip": "2.3.0",
     "@types/request": "2.47.1",
+    "dotenv": "6.0.0",
     "node-fetch": "2.2.0",
     "public-ip": "2.4.0",
     "wget": "0.0.1"
   },
   "scripts": {
-    "tsc": "tsc --watch",
+    "tsc": "./node_modules/.bin/tsc --watch",
     "dev": "sudo nodemon dist/index.js"
   },
   "devDependencies": {
