@@ -3,6 +3,7 @@ import { SmsParser } from './SmsParser';
 import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
+import { ServerHost } from './configuration';
 
 const smsParser = new SmsParser();
 
@@ -30,6 +31,10 @@ export const setup = () => {
     app.listen(PORT, () => {
         console.log(`Poum app listening on port ${PORT}!`)
     });
+}
+
+export function getUrlFromServerHost(serverHost: ServerHost) {
+    return `${serverHost.protocol}://${serverHost.host}:${serverHost.port}`;
 }
 
 export const sendSms = (from: string, msg: string) => {
