@@ -1,6 +1,5 @@
 import * as express from 'express';
 import { SmsParser } from './SmsParser';
-import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import configuration from './configuration';
@@ -38,17 +37,22 @@ export function getUrlFromServerHost(serverHost: ServerHost) {
     return `${serverHost.protocol}://${serverHost.host}:${serverHost.port}`;
 }
 
-export const sendSms = (from: string, msg: string) => {
+export const sendSms = async (from: string, msg: string) => {
     const phone = from.replace('+336', '06');
     const uri = `${getUrlFromServerHost(configuration.smsServer)}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${msg}`;
     console.log('send sms', uri);
-    http.get(uri, (res: any) => {
-        // console.log('res body', res.body);
-    })
+    await getTextFromUri(uri);
 }
 
 export async function getJson<T>(uri: string): Promise<T> {
     const response = await fetch(uri);
     const json: T = await response.json();
     return json;
+}
+
+
+export async function getTextFromUri(uri: string): Promise<string> {
+    const response = await fetch(uri);
+    const text = await response.text();
+    return text;
 }

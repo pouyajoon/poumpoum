@@ -21,7 +21,6 @@ export const updatePublicIpOnDomain = async () => {
 
     const subDomainName = `${subDomain}.${domain}`;
 
-    console.log('cloud');
     const zones = await cf.zones.browse();
     const domainRecord = zones.result.find((z: Zone) => z.name === domain);
 

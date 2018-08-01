@@ -24,8 +24,6 @@ const startBox = {
 
 const publicIpInstruction = {
     name: 'public ip',
-    action: async () => {
-        return getPublicIp();
-    }
+    action: getPublicIp
 }
 export const instructions: Instruction[] = [help, publicIpInstruction, startBox, stopBox];
