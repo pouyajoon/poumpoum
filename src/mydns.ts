@@ -8,7 +8,7 @@ interface Zone {
     id: string;
 }
 
-interface DndRecord {
+interface DnsRecord {
     id: string;
     name: string;
     content: string;
@@ -26,8 +26,8 @@ export const updatePublicIpOnDomain = async () => {
     const domainRecord = zones.result.find((z: Zone) => z.name === domain);
 
     const recordsResult = await cf.dnsRecords.browse(domainRecord.id);
-    const records: DndRecord[] = recordsResult.result;
-    const subDomainRecord: DndRecord | undefined = records.find((r) => r.name === subDomainName);
+    const records: DnsRecord[] = recordsResult.result;
+    const subDomainRecord: DnsRecord | undefined = records.find((r) => r.name === subDomainName);
     if (subDomainRecord) {
         const publicIp = await getPublicIp();
         if (subDomainRecord.content !== publicIp) {
