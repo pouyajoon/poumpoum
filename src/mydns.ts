@@ -14,9 +14,7 @@ interface DnsRecord {
     content: string;
 }
 
-export const updatePublicIpOnDomain = async () => {
-    const domain = 'origamix.fr';
-    const subDomain = 'rognes';
+export const updatePublicIpOnDomain = async (domain: string, subDomain: string) => {
 
     const subDomainName = `${subDomain}.${domain}`;
 
