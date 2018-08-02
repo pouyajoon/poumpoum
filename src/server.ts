@@ -4,8 +4,18 @@ import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import configuration from './configuration';
 import { ServerHost } from './configuration';
+import * as path from 'path';
+
+
+
 
 const smsParser = new SmsParser();
+
+const battery = (req: express.Request, res: express.Response) => {
+    const indexPath = path.join(__dirname, '../src/public/battery/battery.html');
+    console.log('indexPath', __dirname, indexPath);
+    res.sendFile(indexPath);
+};
 
 const home = (req: express.Request, res: express.Response) => {
     res.send(smsParser.instructionList())
@@ -14,17 +24,23 @@ const home = (req: express.Request, res: express.Response) => {
 const sms = async (req: express.Request, res: express.Response) => {
     console.log('sms params', req.url, req.query);
     console.log('message', req.query.m);
-    const instruction = smsParser.parse(req.query.m);
-    const instructionResult = await instruction.action();
-    sendSms(req.query.f, instructionResult);
-    res.send(`sms ${req.query.m} : ${instructionResult}`);
+    if (req.query.m) {
+        const instruction = smsParser.parse(req.query.m);
+        const instructionResult = await instruction.action();
+        sendSms(req.query.f, instructionResult);
+        res.send(`sms ${req.query.m} : ${instructionResult}`);
+    }
 }
 
 const PORT = 80;
 export const setup = () => {
     const app = express();
+    const publicPath = path.join(__dirname, '../dist/public');
+    console.log('publicPath', publicPath);
+    app.use(express.static(publicPath));
     app.use(bodyParser.urlencoded({ extended: false }));
 
+    app.get('/battery', battery);
     app.get('/', home);
     app.get('*', sms);
 

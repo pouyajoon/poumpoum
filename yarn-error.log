@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add -D @types/node-cloudflare
+  /usr/local/lib/node_modules/node/bin/node /usr/local/bin/yarn add puppeteer
 
 PATH: 
   /Users/pouya/.fastlane/bin:/Users/pouya/.rbenv/shims:/Users/pouya/.rbenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/pouya/.composer/vendor/bin
@@ -14,17 +14,12 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fnode-cloudflare: Not found
-      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:65656:18)
-      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:134675:22)
-      at Request.emit (events.js:182:13)
-      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:135658:10)
-      at Request.emit (events.js:182:13)
-      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:135578:12)
-      at Object.onceWrapper (events.js:273:13)
-      at IncomingMessage.emit (events.js:187:15)
-      at endReadableNT (_stream_readable.js:1081:12)
-      at process._tickCallback (internal/process/next_tick.js:63:19)
+  Error: https://registry.yarnpkg.com/puppeteer: ETIMEDOUT
+      at Timeout._onTimeout (/usr/local/lib/node_modules/yarn/lib/cli.js:135339:19)
+      at ontimeout (timers.js:427:11)
+      at tryOnTimeout (timers.js:289:5)
+      at listOnTimeout (timers.js:252:5)
+      at Timer.processTimers (timers.js:212:10)
 
 npm manifest: 
   {
@@ -50,8 +45,8 @@ npm manifest:
     "devDependencies": {
       "@types/express": "4.16.0",
       "@types/node-fetch": "2.1.2",
+      "@types/puppeteer": "1.6.0",
       "express": "4.16.3",
-      "tslint-react": "3.6.0",
       "typescript": "3.0.1"
     }
   }
@@ -128,6 +123,13 @@ Lockfile:
   "@types/public-ip@2.3.0":
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/@types/public-ip/-/public-ip-2.3.0.tgz#8ef497b09e52455ab24f753b17e6703bb6baaebf"
+  
+  "@types/puppeteer@1.6.0":
+    version "1.6.0"
+    resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.6.0.tgz#3dc6613cfbbb5e91443f5137fb4831973857ab7f"
+    dependencies:
+      "@types/events" "*"
+      "@types/node" "*"
   
   "@types/range-parser@*":
     version "1.2.2"
@@ -798,22 +800,6 @@ Lockfile:
   timed-out@^4.0.0, timed-out@^4.0.1:
     version "4.0.1"
     resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
-  
-  tslib@^1.8.1:
-    version "1.9.3"
-    resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
-  
-  tslint-react@3.6.0:
-    version "3.6.0"
-    resolved "https://registry.yarnpkg.com/tslint-react/-/tslint-react-3.6.0.tgz#7f462c95c4a0afaae82507f06517ff02942196a1"
-    dependencies:
-      tsutils "^2.13.1"
-  
-  tsutils@^2.13.1:
-    version "2.29.0"
-    resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.29.0.tgz#32b488501467acbedd4b85498673a0812aca0b99"
-    dependencies:
-      tslib "^1.8.1"
   
   tunnel@0.0.2:
     version "0.0.2"

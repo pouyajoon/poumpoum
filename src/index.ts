@@ -1,6 +1,7 @@
 
 import { setup } from './server';
-import { updatePublicIpOnDomain } from './mydns';
+// import { updatePublicIpOnDomain } from './mydns';
+import { batteryCheck } from './battery';
 // import { getWeather } from './weather';
 
 setup();
@@ -19,4 +20,5 @@ setup();
 
 // start();
 
-updatePublicIpOnDomain();
+// updatePublicIpOnDomain();
+batteryCheck();
