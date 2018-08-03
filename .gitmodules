@@ -1,0 +1,3 @@
+[submodule "dist/tuyapi"]
+	path = dist/tuyapi
+	url = https://github.com/codetheweb/tuyapi.git

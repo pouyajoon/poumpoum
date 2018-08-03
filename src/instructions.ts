@@ -1,5 +1,6 @@
 import { SmsParser } from "./SmsParser";
 import { getPublicIp } from "./publicIp";
+import { tuyaSetState } from "./tuya";
 
 export interface Instruction {
     name: string;
@@ -15,11 +16,11 @@ export const help = {
 };
 const stopBox = {
     name: 'stop box',
-    action: async () => { console.log('stop box'); return 'stop box'; }
+    action: async () => { console.log('stop box'); return tuyaSetState(false) }
 };
 const startBox = {
     name: 'start box',
-    action: async () => { console.log('start box'); return 'start box'; }
+    action: async () => { console.log('start box'); return tuyaSetState(true); }
 };
 
 const publicIpInstruction = {
