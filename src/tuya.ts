@@ -11,8 +11,6 @@
 
 // let api = new Cloud({ key: apiKey, secret: apiSecret, region });
 
-
-
 // let devices = await api.linkDevice({ ssid: 'Livebox', wifiPassword: '--' }).catch((err: any) => console.error('linkDevice', err));
 // console.log(devices);
 // api.register(user).then(async (sid: any) => {
@@ -34,13 +32,13 @@
 // const init = await api.login(user).catch((err: any) => console.error('init', err));
 // console.log('init', init);
 // if (init) {
-//     let devices = await register.linkDevice({ ssid: 'Livebox-CDB6', wifiPassword: 'F6A3367A742AED2A7516E9AA95' }).catch((err: any) => console.error('linkDevice', err));
+//     let devices = await register.linkDevice({ ssid: 'Livebox', wifiPassword: '--' }).catch((err: any) => console.error('linkDevice', err));
 //     console.log(devices);
 // }
 
 
 // register.init().then(async () => {
-//     let devices = await register.linkDevice({ ssid: 'Livebox-CDB6', wifiPassword: 'F6A3367A742AED2A7516E9AA95' }).catch((err: any) => console.error('linkDevice', err));
+//     let devices = await register.linkDevice({ ssid: 'Livebox', wifiPassword: '--' }).catch((err: any) => console.error('linkDevice', err));
 //     console.log(devices);
 // }).catch((err: any) => console.error('init', err));
 // }
