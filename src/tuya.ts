@@ -52,7 +52,7 @@ const tuyaConf = {
 };
 
 export const tuyaSetState = async (state: boolean) => {
-    const TuyaDevice = require('./../dist/tuyapi');
+    const TuyaDevice = require('tuyapi');
     let tuya = new TuyaDevice(tuyaConf);
     await tuya.resolveId();
     const res = await tuya.set({ set: state });
