@@ -18,7 +18,7 @@ interface Keys {
 const configuration: Keys = {
     weather: process.env.WEATHER_KEY,
     smsServer: {
-        host: "192.168.1.10",
+        host: "192.168.0.151",
         port: 5554,
         protocol: 'http'
     },
