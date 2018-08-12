@@ -10,3 +10,7 @@ const rognes = {
 
 
 export const places = { poumerole, rognes };
+
+const pouya = '0661179325';
+const vincent = '0664804606';
+export const numbers = { pouya, vincent }

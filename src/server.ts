@@ -58,7 +58,8 @@ export const sendSms = async (to: string, msg: string) => {
     const encodedMessage = encodeURIComponent(msg);
     const uri = `${getUrlFromServerHost(configuration.smsServer)}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${encodedMessage}`;
     console.log('send sms', uri);
-    await getTextFromUri(uri);
+    const res = await getTextFromUri(uri);
+    console.log('send sms result', res);
 }
 
 export async function getJson<T>(uri: string): Promise<T> {
@@ -69,7 +70,23 @@ export async function getJson<T>(uri: string): Promise<T> {
 
 
 export async function getTextFromUri(uri: string): Promise<string> {
-    const response = await fetch(uri);
-    const text = await response.text();
-    return text;
+    const response = await fetch(uri).catch(err => console.error(err));
+    if (response) {
+        const text = await response.text();
+        return text;
+    }
+    return '<KO>';
+}
+
+
+export async function postToUrl(uri: string, body: string): Promise<string> {
+    const response = await fetch(uri, {
+        body,
+        method: "POST",
+    }).catch(err => console.error(err));
+    if (response) {
+        const text = await response.text();
+        return text;
+    }
+    return '<KO>';
 }
