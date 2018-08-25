@@ -24,6 +24,23 @@ export const getDaikinControls = async (ip: string): Promise<DaikinControls> => 
     }, {})
     return res;
 }
+interface DSensors {
+    htemp: number;
+    hhum: number;
+    otemp: number;
+    err: number;
+    cmpfreq: number;
+}
+
+export const getDaikinSensors = async (ip: string): Promise<DSensors> => {
+    const infosText = await getTextFromUri(`http://${ip}/aircon/get_sensor_info`);
+    const res = infosText.split(',').reduce((controls: any, param) => {
+        const res = param.split('=');
+        controls[res[0]] = res[1];
+        return controls;
+    }, {})
+    return res;
+}
 
 
 function getStringParamsFromControls(controls: any) {
@@ -34,7 +51,7 @@ function getStringParamsFromControls(controls: any) {
 
 export const setDaikinControls = async (ip: string, controls: DaikinControls) => {
     const url = `http://${ip}/aircon/set_control_info?${getStringParamsFromControls(controls)}`;
-    console.log('set daiking with', url);
+    console.log('set daikin with', url);
     const res = await getTextFromUri(url);
     console.log('daikin result', ip, res)
     return res;
@@ -52,6 +69,7 @@ function getMandatoryControls(controls: DaikinControls): DMandatoryControl {
         f_dir: controls.f_dir
     }
 }
+
 
 export const updateDaikinPower = async (ip: string, pow: 0 | 1) => {
     const controls: any = await getDaikinControls(ip);

@@ -1,17 +1,12 @@
-// import { tuyaConnect } from "./tuya";
-
-// import { tuyaLinkDevice } from "./tuya";
-
-// import { sendSms } from './server';
+import { setup } from './server';
 // import { numbers } from './places';
 // import { setDaikinTemperature } from './daikin';
-// import { tuyaLinkDevice } from './tuya';
 // import { updatePublicIpOnDomain } from './mydns';
 // import { batteryCheck } from './battery';
 // import { getWeather } from './weather';
 // import { places } from './places';
 
-// setup();
+setup();
 // sendSms(numbers.pouya, "Tu peux changer mon nom en Alfred De LaPoum 3.")
 
 // (async () => {
@@ -32,10 +27,6 @@
 //     const message = `Votre appareil est hors tension depuis plus de ${time}`;
 //     sendSms('0668755503', message);
 // });
-
-// tuyaConnect();
-// tuyaLinkDevice();
-
 
 // updateDaikinPower('192.168.0.161', 1)
 // setDaikinTemperature('192.168.0.161', 25);

@@ -1,25 +1,22 @@
 import * as express from 'express';
 import { SmsParser } from './SmsParser';
-import * as bodyParser from 'body-parser';
+// import * as bodyParser from 'body-parser';
 import fetch from 'node-fetch';
 import configuration from './configuration';
 import { ServerHost } from './configuration';
 import * as path from 'path';
 
-
+// import * as homeRouter from './routes/home';
+const homeRouter = require('./routes/home.js');
 
 
 const smsParser = new SmsParser();
 
-const battery = (req: express.Request, res: express.Response) => {
-    const indexPath = path.join(__dirname, '../src/public/battery/battery.html');
-    console.log('indexPath', __dirname, indexPath);
-    res.sendFile(indexPath);
-};
-
-const home = (req: express.Request, res: express.Response) => {
-    res.send(smsParser.instructionList())
-};
+// const battery = (req: express.Request, res: express.Response) => {
+//     const indexPath = path.join(__dirname, '../src/public/battery/battery.html');
+//     console.log('indexPath', __dirname, indexPath);
+//     res.sendFile(indexPath);
+// };
 
 const sms = async (req: express.Request, res: express.Response) => {
     console.log('sms params', req.url, req.query);
@@ -36,16 +33,20 @@ const PORT = 80;
 export const setup = () => {
     const app = express();
     const publicPath = path.join(__dirname, '../dist/public');
-    console.log('publicPath', publicPath);
-    app.use(express.static(publicPath));
-    app.use(bodyParser.urlencoded({ extended: false }));
+    console.log('Chemin : ', publicPath);
 
-    app.get('/battery', battery);
-    app.get('/', home);
-    app.get('*', sms);
+    app.set('views', path.join(__dirname, 'views'));
+    app.set('view engine', 'pug');
+
+    app.use(express.static(publicPath));
+    app.use(express.urlencoded({ extended: false }));
+
+    // app.get('/battery', battery);
+    app.get('/sms/', sms);
+    app.use('/', homeRouter);
 
     app.listen(PORT, () => {
-        console.log(`Poum app listening on port ${PORT}!`)
+        console.log(`On ecoute sur le port ${PORT} !`)
     });
 }
 
