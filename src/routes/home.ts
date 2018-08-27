@@ -2,11 +2,11 @@ import * as express from 'express';
 const router = express.Router();
 
 import {monPublicIp} from '../publicIp'; 
-const MonIp = async () => {
-    const chaine = await monPublicIp();
-    console.log(`Retour Ip ${chaine}`);
-    return chaine;
-}
+// const MonIp = async () => {
+//     const chaine = await monPublicIp();
+//     console.log(`Retour Ip ${chaine}`);
+//     return chaine;
+// }
 
 
 import {getDaikinControls} from '../daikin';
@@ -28,7 +28,7 @@ router.get('/', async function(req, res, next) {
     const retourDaikin = await DaikinState();
     const retourDaikinS =await DaikinSensors();
     console.log(`génération page retourD = ${retourDaikin} - ${retourDaikinS}`);
-    const retourIp = await MonIp();
+    const retourIp = await monPublicIp();
     res.render('home', {
         title: 'Le Majordome de La Poumerole',
         onoff: retourDaikin.pow,
