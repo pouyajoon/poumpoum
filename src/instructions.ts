@@ -1,5 +1,6 @@
 import { SmsParser } from "./SmsParser";
 import { monPublicIp } from "./publicIp";
+import { boxStatus, boxToggle } from "./netbox";
 
 export interface Instruction {
     name: string;
@@ -13,17 +14,17 @@ export const help = {
         return parser.instructionList();
     }
 };
-const stopBox = {
-    name: 'stop box',
-    action: async () => { console.log('stop box'); return ('false') }
+const toggleBox = {
+    name: 'start/stop box',
+    action: boxToggle
 };
-const startBox = {
-    name: 'start box',
-    action: async () => { console.log('start box'); return ('true'); }
+const statBox = {
+    name: 'état box',
+    action: boxStatus
 };
 
 const publicIpInstruction = {
     name: 'public ip',
     action: monPublicIp
 }
-export const instructions: Instruction[] = [help, publicIpInstruction, startBox, stopBox];
+export const instructions: Instruction[] = [help, publicIpInstruction, statBox, toggleBox];

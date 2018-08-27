@@ -1,6 +1,6 @@
 import * as express from 'express';
 const router = express.Router();
-
+import {boxStatus} from '../netbox';
 import {monPublicIp} from '../publicIp'; 
 // const MonIp = async () => {
 //     const chaine = await monPublicIp();
@@ -29,12 +29,14 @@ router.get('/', async function(req, res, next) {
     const retourDaikinS =await DaikinSensors();
     console.log(`génération page retourD = ${retourDaikin} - ${retourDaikinS}`);
     const retourIp = await monPublicIp();
+    const retourBox = await boxStatus();
     res.render('home', {
         title: 'Le Majordome de La Poumerole',
         onoff: retourDaikin.pow,
         mode: retourDaikin.mode,
         consigne: retourDaikin.stemp,
         hometemp: retourDaikinS,
+        box: retourBox,
         ippub: retourIp
     });
 });
