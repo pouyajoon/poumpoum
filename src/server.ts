@@ -56,8 +56,9 @@ export function getUrlFromServerHost(serverHost: ServerHost) {
 
 export const sendSms = async (to: string, msg: string) => {
     const phone = to.replace('+336', '06');
-    const encodedMessage = encodeURIComponent(msg);
+    const encodedMessage = encodeURIComponent(msg.replace(/[=%&]/g, '->'));
     const uri = `${getUrlFromServerHost(configuration.smsServer)}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${encodedMessage}`;
+    // const uri = `${getUrlFromServerHost(configuration.smsServer)}/SendSMS/user=&password=123456&phoneNumber=${phone}&msg=${msg}`;
     console.log('send sms', uri);
     const res = await getTextFromUri(uri);
     console.log('send sms result', res);

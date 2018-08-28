@@ -42,6 +42,54 @@ export const getDaikinSensors = async (ip: string): Promise<DSensors> => {
     return res;
 }
 
+export const smsGetDaikin = () => {
+    return new Promise<string>(resolve => {
+        getDaikinControls('192.168.0.161').then((DControls: DaikinControls)=> {
+            const retour = `${DControls.pow}-${DControls.mode}-c${DControls.stemp}°-`;
+            getDaikinSensors('192.168.0.161').then((DSens: DSensors) => {
+                const retour2 = `i${DSens.htemp}-o${DSens.otemp}`;
+                return resolve(`${retour}${retour2}`)
+            })
+        })
+    })
+}
+
+export const smsSetDaikinFroid = () => {
+    return new Promise<string>(resolve => {
+        getDaikinControls('192.168.0.161').then((DControls: DaikinControls) => {
+            DControls.pow = 1;
+            DControls.mode = 3;
+            DControls.stemp = 25;
+            setDaikinControls('192.168.0.161',DControls).then((retour: string)=> {
+                return resolve(retour)
+            })
+        })
+    })
+}
+
+export const smsSetDaikinChaud = () => {
+    return new Promise<string>(resolve => {
+        getDaikinControls('192.168.0.161').then((DControls: DaikinControls) => {
+            DControls.pow = 1;
+            DControls.mode = 4;
+            DControls.stemp = 19;
+            setDaikinControls('192.168.0.161',DControls).then((retour: string)=> {
+                return resolve(retour)
+            })
+        })
+    })
+}
+
+export const smsStopDaikin = () => {
+    return new Promise<string>(resolve => {
+        getDaikinControls('192.168.0.161').then((DControls: DaikinControls) => {
+            DControls.pow = 0;
+            setDaikinControls('192.168.0.161',DControls).then((retour: string)=> {
+                return resolve(retour)
+            })
+        })
+    })
+}
 
 function getStringParamsFromControls(controls: any) {
     return Object.keys(controls).map(c => {
